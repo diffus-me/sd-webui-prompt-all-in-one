@@ -14,110 +14,6 @@
                                  @click="$emit('click:selectLanguage', $event)">
                                 <icon-svg class="hover-scale-120" name="i18n"/>
                             </div>
-                            <div :class="['extend-btn-item', isLatestVersion ? '' : 'red-dot']">
-                                <icon-svg class="hover-scale-120" name="setting" v-tooltip="getLang('setting_desc')"/>
-                                <div class="setting-box" v-animate="'fadeIn'" @mouseenter="onSettingBoxMouseEnter">
-                                    <div v-if="translateApiItem.name && !isEnglish" class="extend-btn-item"
-                                         v-tooltip="getLang('translate_api') + ': ' + translateApiItem.name"
-                                         @click="$emit('click:translateApi', $event)">
-                                        <icon-svg class="hover-scale-120" name="api"/>
-                                    </div>
-                                    <div class="extend-btn-item"
-                                         v-tooltip="getLang('prompt_format')"
-                                         @click="$emit('click:promptFormat', $event)">
-                                        <icon-svg class="hover-scale-120" name="format"/>
-                                    </div>
-                                    <div class="extend-btn-item"
-                                         v-tooltip="getLang('keywords_blacklist')"
-                                         @click="$emit('click:blacklist', $event)">
-                                        <icon-svg class="hover-scale-120" name="blacklist"/>
-                                    </div>
-                                    <div class="extend-btn-item"
-                                         v-tooltip="getLang('hotkey_setting')"
-                                         @click="$emit('click:hotkey', $event)">
-                                        <icon-svg class="hover-scale-120" name="hotkey"/>
-                                    </div>
-                                    <div class="extend-btn-item"
-                                         v-tooltip="getLang('theme_extension')"
-                                         @click="$emit('click:selectTheme', $event)">
-                                        <icon-svg class="hover-scale-120" name="theme"/>
-                                    </div>
-                                    <div class="extend-btn-item"
-                                         v-tooltip="getLang(theme === 'dark' ? 'switch_to_light_theme': 'switch_to_dark_theme')"
-                                         @click="$emit('click:switchTheme', $event)">
-                                        <icon-svg class="hover-scale-120" :name="theme === 'dark' ? 'sun': 'moon'"/>
-                                    </div>
-                                    <div :class="['extend-btn-item', isLatestVersion ? '' : 'red-dot']"
-                                         v-tooltip="getLang('about_desc')"
-                                         @click="$emit('click:showAbout', $event)">
-                                        <icon-svg class="hover-scale-120" name="about"/>
-                                    </div>
-                                    <template v-if="!isEnglish">
-                                        <template v-if="canOneTranslate">
-                                            <div class="gradio-checkbox hover-scale-120">
-                                                <label v-tooltip="getLang('auto_translate')">
-                                                    <input type="checkbox" name="auto_translate"
-                                                           value="1"
-                                                           :checked="autoTranslate"
-                                                           @change="$emit('update:autoTranslate', $event.target.checked)">
-                                                    <icon-svg name="translate"/>
-                                                </label>
-                                            </div>
-                                        </template>
-                                        <template v-else>
-                                            <div class="gradio-checkbox hover-scale-120">
-                                                <label v-tooltip="getLang('auto_translate_to_local_language')">
-                                                    <input type="checkbox" name="auto_translate_to_local_language"
-                                                           value="1"
-                                                           :checked="autoTranslateToLocal"
-                                                           @change="$emit('update:autoTranslateToLocal', $event.target.checked)">
-                                                    <icon-svg name="translate"/>
-                                                </label>
-                                            </div>
-                                            <div class="gradio-checkbox hover-scale-120">
-                                                <label v-tooltip="getLang('auto_translate_to_english')">
-                                                    <input type="checkbox" name="auto_translate_to_english" value="1"
-                                                           :checked="autoTranslateToEnglish"
-                                                           @change="$emit('update:autoTranslateToEnglish', $event.target.checked)">
-                                                    <icon-svg name="english"/>
-                                                </label>
-                                            </div>
-                                        </template>
-                                    </template>
-                                    <!--<div class="gradio-checkbox hover-scale-120">
-                                        <label v-tooltip="getLang('is_remove_space')">
-                                            <input type="checkbox" name="auto_remove_space" value="1"
-                                                   :checked="autoRemoveSpace"
-                                                   @change="$emit('update:autoRemoveSpace', $event.target.checked)">
-                                            <icon-svg name="remove-space"/>
-                                        </label>
-                                    </div>-->
-                                    <div class="gradio-checkbox hover-scale-120">
-                                        <label v-tooltip="getLang('whether_to_enable_tooltip')">
-                                            <input type="checkbox" name="enable_tooltip" value="1"
-                                                   :checked="enableTooltip"
-                                                   @change="$emit('update:enableTooltip', $event.target.checked)">
-                                            <icon-svg name="tooltip"/>
-                                        </label>
-                                    </div>
-                                    <div class="gradio-checkbox">
-                                        <label v-tooltip="getLang('auto_input_prompt')">
-                                            <select v-model="autoInputPrompt" @change="onAutoInputPromptChange">
-                                                <option value="disabled">{{ getLang('auto_input_prompt') }}:
-                                                    {{ getLang('disabled') }}
-                                                </option>
-                                                <option value="last">{{ getLang('last_input_prompt') }}</option>
-                                                <optgroup v-for="(item) in getCurrentTypeFavorites()" :key="item.key"
-                                                          :label="getLang('favorite') + ' / ' + getLang(item.name)">
-                                                    <option v-for="(favorite) in item.list" :value="favorite.id">
-                                                        {{ favorite.name || favorite.prompt.substring(0, 40) }}
-                                                    </option>
-                                                </optgroup>
-                                            </select>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,18 +88,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="prompt-header-extend" v-if="!neg">
-                    <div class="extend-content">
-                        <div class="extend-btn-group">
-                            <div class="extend-btn-item" v-tooltip="getLang('use_chatgpt_gen_prompts')"
-                                 @click="$emit('click:showChatgpt', $event)">
-                                <icon-svg class="hover-scale-120" name="chatgpt"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="prompt-header-extend prompt-append">
-                    <div class="extend-content">
+                    <div class="extend-content" style="justify-content: flex-start;">
                         <div class="gradio-checkbox hover-scale-120">
                             <label v-tooltip="getLang('auto_load_webui_prompt')">
                                 <input type="checkbox" name="auto_load_webui_prompt" value="1"
@@ -212,28 +98,6 @@
                                 <icon-svg name="load"/>
                             </label>
                         </div>
-                        <div class="gradio-checkbox hover-scale-120">
-                            <label v-if="hideDefaultInput" v-tooltip="getLang('show_default_input_box')">
-                                <input type="checkbox" name="hide_default_input" value="1"
-                                       :checked="!hideDefaultInput"
-                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-svg name="input"/>
-                            </label>
-                            <label v-else v-tooltip="getLang('hide_default_input_box')">
-                                <input type="checkbox" name="hide_default_input" value="1"
-                                       :checked="!hideDefaultInput"
-                                       @change="$emit('update:hideDefaultInput', !$event.target.checked)">
-                                <icon-svg name="input"/>
-                            </label>
-                        </div>
-                        <textarea type="text" class="scroll-hide svelte-4xt1ch input-tag-append" ref="promptTagAppend"
-                                  :placeholder="getLang('please_enter_new_keyword')"
-                                  v-tooltip="getLang('enter_to_add')"
-                                  @focus="onAppendTagFocus"
-                                  @blur="onAppendTagBlur"
-                                  @keyup="onAppendTagKeyUp"
-                                  @keydown="onAppendTagKeyDown"></textarea>
-
                         <div class="prompt-append-list" ref="promptAppendList" v-show="showAppendList"
                              :style="appendListStyle">
                             <div v-for="(item, index) in appendList" :key="item.type"

@@ -21,10 +21,12 @@ from scripts.physton_prompt.translator.iflytekV1_translator import IflytekV1Tran
 from scripts.physton_prompt.translator.iflytekV2_translator import IflytekV2Translator
 from scripts.physton_prompt.translator.mbart50_translator import MBart50Translator
 
+from modules.paths import Paths
+
 caches = {}
 
 
-def translate(text, from_lang, to_lang, api, api_config=None):
+def translate(p: Paths, text, from_lang, to_lang, api, api_config=None):
     if api_config is None:
         api_config = {}
     global caches
@@ -123,7 +125,7 @@ def translate(text, from_lang, to_lang, api, api_config=None):
 
         translator.set_from_lang(from_lang)
         translator.set_to_lang(to_lang)
-        translator.set_api_config(unprotected_translate_api_config('translate_api.' + api, api_config))
+        translator.set_api_config(unprotected_translate_api_config(p, 'translate_api.' + api, api_config))
 
         if isinstance(text, list):
             translate_texts = []

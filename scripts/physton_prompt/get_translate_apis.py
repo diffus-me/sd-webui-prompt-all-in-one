@@ -3,6 +3,8 @@ import json
 import re
 from scripts.physton_prompt.storage import Storage
 
+from modules.paths import Paths
+
 # from scripts.physton_prompt.storage import Storage
 
 translate_apis = {}
@@ -76,7 +78,7 @@ def privacy_translate_api_config(data_key, data):
 
     return data
 
-def unprotected_translate_api_config(data_key, data):
+def unprotected_translate_api_config(p: Paths, data_key, data):
     api = None
     if data_key == 'chatgpt_key':
         api = 'openai'
@@ -99,7 +101,7 @@ def unprotected_translate_api_config(data_key, data):
     if 'config' not in api_item or not api_item['config']:
         return data
 
-    storage_data = Storage.get(data_key)
+    storage_data = Storage.get(p, data_key)
 
     for config in api_item['config']:
         # 如果有 privacy 的属性并且为 True
