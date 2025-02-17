@@ -645,5 +645,25 @@ export default {
             });
         });
         return result.join("/");
-    }
+    },
+
+    chooseLanguage(availableLanguages, userLanguage) {
+        // Normalize the language code to xx_XX format
+        userLanguage = userLanguage.replace('-', '_');
+    
+        // Check for a direct match
+        if (availableLanguages.includes(userLanguage)) {
+          return userLanguage;
+        }
+    
+        // Check for a match with only the language part
+        const languagePart = userLanguage.split('_')[0];
+        const matchedLanguage = availableLanguages.find(lang => lang.startsWith(languagePart));
+        if (matchedLanguage) {
+          return matchedLanguage;
+        }
+    
+        // Fallback to default language
+        return '';
+      },    
 }

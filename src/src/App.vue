@@ -699,10 +699,21 @@ export default {
                         this.gradioAPI.setData('languageCode', this.languageCode)
                     }
                 } else {
-                    let browserLang = navigator.language || navigator.userLanguage || ''
-                    if (browserLang) {
+                    const cookieLanguage = Cookies.get(languageCookieKey);
+                    const languageListNode = common.gradioApp().querySelector(`#language-list`);
+                    const languageList = JSON.parse(
+                        languageListNode.textContent.replaceAll("'", '"')
+                    );
+                    let browserLang = '';
+                    if (cookieLanguage) {
+                        browserLang = cookieLanguage;
+                    } else {
+                        browserLang = navigator.language || navigator.userLanguage || ''
+                    }
+                    const selectedLanguage = common.chooseLanguage(languageList, browserLang)
+                    if (selectedLanguage) {
                         for (let key in this.languages) {
-                            if (common.isSameLang(this.languages[key].code, browserLang)) {
+                            if (common.isSameLang(this.languages[key].code, selectedLanguage)) {
                                 this.languageCode = this.languages[key].code
                                 this.$forceUpdate()
                                 this.gradioAPI.setData('languageCode', this.languageCode)
