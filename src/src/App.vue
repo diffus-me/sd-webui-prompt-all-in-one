@@ -696,7 +696,7 @@ export default {
                 } else {
                     browserLang = navigator.language || navigator.userLanguage || ''
                 }
-                const selectedLanguage = common.chooseLanguage(languageList, browserLang)
+                let selectedLanguage = common.chooseLanguage(languageList, browserLang)
                 if (!selectedLanguage || selectedLanguage === "None" || selectedLanguage === "") {
                     selectedLanguage = "en_US"
                 }
