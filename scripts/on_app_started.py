@@ -260,8 +260,9 @@ def on_app_started(_: gr.Blocks, app: FastAPI):
         return {"success": hi.move_down_favorite(p, data['type'], data['id'])}
 
     @app.get("/physton_prompt/get_latest_history")
-    async def _get_latest_history(type: str):
-        return {"history": hi.get_latest_history(type)}
+    async def _get_latest_history(type: str, request: Request):
+        p = Paths(request)
+        return {"history": hi.get_latest_history(p, type)}
 
     @app.post("/physton_prompt/set_history")
     async def _set_history(request: Request):
