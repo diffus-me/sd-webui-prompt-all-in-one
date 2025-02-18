@@ -7,16 +7,6 @@
                 </div>
                 <div class="prompt-header-title">{{ neg ? getLang('negative_prompt') : getLang('prompt') }}</div>
                 <div class="prompt-header-counter" v-show="counterText">({{ counterText }})</div>
-                <div class="prompt-header-extend">
-                    <div class="extend-content">
-                        <div class="extend-btn-group">
-                            <div class="extend-btn-item" v-tooltip="'Language: ' + langName"
-                                 @click="$emit('click:selectLanguage', $event)">
-                                <icon-svg class="hover-scale-120" name="i18n"/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!--<div class="prompt-header-break"></div>-->
                 <div class="prompt-header-extend">
                     <div class="extend-content">

@@ -290,7 +290,7 @@ export default {
                     id: 'phystonPrompt_img2img_neg_prompt'
                 },
             ],
-            languageCode: '',
+            languageCode: 'en_US',
             languages: {},
             translateApis: [],
             translateApi: '',
@@ -685,40 +685,28 @@ export default {
             })
 
             this.gradioAPI.getDatas(dataListsKeys).then(data => {
-                if (data.languageCode !== null) {
-                    let findLang = false
-                    for (let key in this.languages) {
-                        if (this.languages[key].code === data.languageCode) {
-                            findLang = true
-                            break
-                        }
-                    }
-                    if (findLang) {
-                        this.languageCode = data.languageCode
-                        this.$forceUpdate()
-                        this.gradioAPI.setData('languageCode', this.languageCode)
-                    }
+                const cookieLanguage = Cookies.get(languageCookieKey);
+                const languageListNode = common.gradioApp().querySelector(`#language-list`);
+                const languageList = JSON.parse(
+                    languageListNode.textContent.replaceAll("'", '"')
+                );
+                let browserLang = '';
+                if (cookieLanguage) {
+                    browserLang = cookieLanguage;
                 } else {
-                    const cookieLanguage = Cookies.get(languageCookieKey);
-                    const languageListNode = common.gradioApp().querySelector(`#language-list`);
-                    const languageList = JSON.parse(
-                        languageListNode.textContent.replaceAll("'", '"')
-                    );
-                    let browserLang = '';
-                    if (cookieLanguage) {
-                        browserLang = cookieLanguage;
-                    } else {
-                        browserLang = navigator.language || navigator.userLanguage || ''
-                    }
-                    const selectedLanguage = common.chooseLanguage(languageList, browserLang)
-                    if (selectedLanguage) {
-                        for (let key in this.languages) {
-                            if (common.isSameLang(this.languages[key].code, selectedLanguage)) {
-                                this.languageCode = this.languages[key].code
-                                this.$forceUpdate()
-                                this.gradioAPI.setData('languageCode', this.languageCode)
-                                break
-                            }
+                    browserLang = navigator.language || navigator.userLanguage || ''
+                }
+                const selectedLanguage = common.chooseLanguage(languageList, browserLang)
+                if (!selectedLanguage || selectedLanguage === "None" || selectedLanguage === "") {
+                    selectedLanguage = "en_US"
+                }
+                if (selectedLanguage) {
+                    for (let key in this.languages) {
+                        if (common.isSameLang(this.languages[key].code, selectedLanguage)) {
+                            this.languageCode = this.languages[key].code
+                            this.$forceUpdate()
+                            this.gradioAPI.setData('languageCode', this.languageCode)
+                            break
                         }
                     }
                 }
