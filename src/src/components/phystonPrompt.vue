@@ -716,7 +716,7 @@ export default {
             }, 100)
         },
         _onTextareaChange(event) {
-            console.log('onTextareaChange', event)
+            // console.log('onTextareaChange', event)
             const autocompleteParent = this.textarea.parentElement.getElementsByClassName('autocompleteParent')
             if (autocompleteParent.length) {
                 if (autocompleteParent[0].style.display !== 'none') return
@@ -949,7 +949,7 @@ export default {
             }
         },
         updateTags() {
-            console.log('tags change', this.tags)
+            // console.log('tags change', this.tags)
             this.updatePrompt()
             const steps = this.steps.querySelector('input[type="number"]').value
             if (!this.$appMode) {
@@ -1052,7 +1052,7 @@ export default {
                     this.updateTags()*/
                 },
                 onChoose: (env) => {
-                    console.log(env)
+                    // console.log(env)
                     if (this.dropTags.length) {
                         let current = env.item
                         let currentId = current.getAttribute('data-id')
@@ -1287,7 +1287,7 @@ export default {
 
                 let translateByCSV = (tags) => {
                     // 开启了使用tagcomplete翻译
-                    console.log('translateByCSV', tags.map(tag => tag.value), { useNetwork })
+                    // console.log('translateByCSV', tags.map(tag => tag.value), { useNetwork })
                     let promises = []
                     tags.forEach(tag => {
                         // 是否被括号包裹
@@ -1323,7 +1323,7 @@ export default {
                                 setTag(tag, result)
                             }
                         })
-                        console.log('No translated keywords: ', needs.map(tag => tag.value))
+                        // console.log('No translated keywords: ', needs.map(tag => tag.value))
                         if (useNetwork) {
                             translate(needs)
                         } else {
@@ -1340,7 +1340,7 @@ export default {
 
                 let translateByGroupTags = (tags) => {
                     // 开启了使用关键词组翻译
-                    console.log('translateByGroupTags', tags.map(tag => tag.value), { useNetwork })
+                    // console.log('translateByGroupTags', tags.map(tag => tag.value), { useNetwork })
                     let promises = []
                     tags.forEach(tag => {
                         // 是否被括号包裹
@@ -1381,7 +1381,7 @@ export default {
                                 setTag(tag, result.value)
                             }
                         })
-                        console.log('No translated keywords: ', needs.map(tag => tag.value))
+                        // console.log('No translated keywords: ', needs.map(tag => tag.value))
                         if (this.tagCompleteFile) {
                             // 开启了使用tagcomplete翻译
                             translateByCSV(needs)
