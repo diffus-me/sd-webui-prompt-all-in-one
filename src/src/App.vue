@@ -366,7 +366,7 @@ export default {
         languageCode: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onLanguageCodeChange', val)
+                // console.log('onLanguageCodeChange', val)
                 this.canOneTranslate = common.canOneTranslate(this.languageCode)
                 this.gradioAPI.setData('languageCode', val).then(data => {
                 }).catch(err => {
@@ -378,7 +378,7 @@ export default {
         autoTranslateToEnglish: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoTranslateToEnglishChange', val)
+                // console.log('onAutoTranslateToEnglishChange', val)
                 this.gradioAPI.setData('autoTranslateToEnglish', val).then(data => {
                 }).catch(err => {
                 })
@@ -388,7 +388,7 @@ export default {
         autoTranslateToLocal: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoTranslateToLocalChange', val)
+                // console.log('onAutoTranslateToLocalChange', val)
                 this.gradioAPI.setData('autoTranslateToLocal', val).then(data => {
                 }).catch(err => {
                 })
@@ -400,7 +400,7 @@ export default {
                 if (!this.startWatchSave) return
                 this.autoTranslateToEnglish = this.autoTranslate
                 this.autoTranslateToLocal = this.autoTranslate
-                console.log('onAutoTranslateChange', val)
+                // console.log('onAutoTranslateChange', val)
                 this.gradioAPI.setData('autoTranslate', val).then(data => {
                 }).catch(err => {
                 })
@@ -410,7 +410,7 @@ export default {
         autoRemoveSpace: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoRemoveSpaceChange', val)
+                // console.log('onAutoRemoveSpaceChange', val)
                 this.gradioAPI.setData('autoRemoveSpace', val).then(data => {
                     this.prompts.forEach(item => {
                         this.$refs[item.id][0].updatePrompt()
@@ -423,7 +423,7 @@ export default {
         autoRemoveLastComma: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoRemoveLastCommaChange', val)
+                // console.log('onAutoRemoveLastCommaChange', val)
                 this.gradioAPI.setData('autoRemoveLastComma', val).then(data => {
                     this.prompts.forEach(item => {
                         this.$refs[item.id][0].updatePrompt()
@@ -436,7 +436,7 @@ export default {
         autoKeepWeightZero: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoKeepWeightZeroChange', val)
+                // console.log('onAutoKeepWeightZeroChange', val)
                 this.gradioAPI.setData('autoKeepWeightZero', val).then(data => {
                 }).catch(err => {
                 })
@@ -446,7 +446,7 @@ export default {
         autoKeepWeightOne: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoKeepWeightOneChange', val)
+                // console.log('onAutoKeepWeightOneChange', val)
                 this.gradioAPI.setData('autoKeepWeightOne', val).then(data => {
                 }).catch(err => {
                 })
@@ -456,7 +456,7 @@ export default {
         autoBreakBeforeWrap: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoBreakBeforeWrap', val)
+                // console.log('onAutoBreakBeforeWrap', val)
                 this.gradioAPI.setData('autoBreakBeforeWrap', val).then(data => {
                     this.prompts.forEach(item => {
                         this.$refs[item.id][0].updatePrompt()
@@ -469,7 +469,7 @@ export default {
         autoBreakAfterWrap: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoBreakAfterWrap', val)
+                // console.log('onAutoBreakAfterWrap', val)
                 this.gradioAPI.setData('autoBreakAfterWrap', val).then(data => {
                     this.prompts.forEach(item => {
                         this.$refs[item.id][0].updatePrompt()
@@ -482,7 +482,7 @@ export default {
         autoRemoveLoraBeforeComma: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoRemoveLoraBeforeCommaChange', val)
+                // console.log('onAutoRemoveLoraBeforeCommaChange', val)
                 this.gradioAPI.setData('autoRemoveLoraBeforeComma', val).then(data => {
                 }).catch(err => {
                 })
@@ -492,7 +492,7 @@ export default {
         autoRemoveLoraAfterComma: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoRemoveLoraAfterCommaChange', val)
+                // console.log('onAutoRemoveLoraAfterCommaChange', val)
                 this.gradioAPI.setData('autoRemoveLoraAfterComma', val).then(data => {
                 }).catch(err => {
                 })
@@ -502,7 +502,7 @@ export default {
         useNovelAiWeightSymbol: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onUseNovelAiWeightSymbolChange', val)
+                // console.log('onUseNovelAiWeightSymbolChange', val)
                 this.gradioAPI.setData('useNovelAiWeightSymbol', val).then(data => {
                 }).catch(err => {
                 })
@@ -512,7 +512,7 @@ export default {
         autoRemoveBeforeLineComma: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onAutoRemoveBeforeLineCommaChange', val)
+                // console.log('onAutoRemoveBeforeLineCommaChange', val)
                 this.gradioAPI.setData('autoRemoveBeforeLineComma', val).then(data => {
                 }).catch(err => {
                 })
@@ -545,7 +545,7 @@ export default {
         translateApi: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onTranslateApiChange', val, oldVal)
+                // console.log('onTranslateApiChange', val, oldVal)
                 this.updateTranslateApiConfig()
                 this.gradioAPI.setData('translateApi', val).then(data => {
                 }).catch(err => {
@@ -556,7 +556,7 @@ export default {
         tagCompleteFile: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onTagCompleteFileChange', val, oldVal)
+                // console.log('onTagCompleteFileChange', val, oldVal)
                 this.gradioAPI.setData('tagCompleteFile', val).then(data => {
                 }).catch(err => {
                 })
@@ -566,7 +566,7 @@ export default {
         groupTagsColor: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onGroupTagsColorChange', val, oldVal)
+                // console.log('onGroupTagsColorChange', val, oldVal)
                 this.gradioAPI.setData('groupTagsColor', val).then(data => {
                 }).catch(err => {
                 })
@@ -577,7 +577,7 @@ export default {
         groupTagsTranslate: {
             handler: function (val, oldVal) {
                 if (!this.startWatchSave) return
-                console.log('onGroupTagsTranslateChange', val, oldVal)
+                // console.log('onGroupTagsTranslateChange', val, oldVal)
                 this.gradioAPI.setData('groupTagsTranslate', val).then(data => {
                 }).catch(err => {
                 })
@@ -586,7 +586,7 @@ export default {
         },
         onlyCsvOnAuto() {
             if (!this.startWatchSave) return
-            console.log('onOnlyCsvOnAutoChange', this.onlyCsvOnAuto)
+            // console.log('onOnlyCsvOnAutoChange', this.onlyCsvOnAuto)
             this.gradioAPI.setData('onlyCsvOnAuto', this.onlyCsvOnAuto).then(data => {
             }).catch(err => {
             })
@@ -595,7 +595,7 @@ export default {
             if (!this.startWatchSave) return
             if (this.extraNetworksWidthTimer) clearTimeout(this.extraNetworksWidthTimer)
             this.extraNetworksWidthTimer = setTimeout(() => {
-                console.log('onExtraNetworksWidthChange', this.extraNetworksWidth)
+                // console.log('onExtraNetworksWidthChange', this.extraNetworksWidth)
                 this.gradioAPI.setData('extraNetworksWidth', this.extraNetworksWidth).then(data => {
                 }).catch(err => {
                 })
@@ -605,7 +605,7 @@ export default {
             if (!this.startWatchSave) return
             if (this.extraNetworksHeightTimer) clearTimeout(this.extraNetworksHeightTimer)
             this.extraNetworksHeightTimer = setTimeout(() => {
-                console.log('onExtraNetworksHeightChange', this.extraNetworksHeight)
+                // console.log('onExtraNetworksHeightChange', this.extraNetworksHeight)
                 this.gradioAPI.setData('extraNetworksHeight', this.extraNetworksHeight).then(data => {
                 }).catch(err => {
                 })
@@ -653,7 +653,7 @@ export default {
 
 
         this.gradioAPI.getConfig().then(res => {
-            console.log('config:', res)
+            // console.log('config:', res)
             this.languageCode = res.i18n.default
             this.translateApi = res.translate_apis.default
             this.translateApis = res.translate_apis.apis
@@ -860,7 +860,7 @@ export default {
                 this.$nextTick(() => {
                     this.prompts.forEach(item => {
                         const $prompt = common.gradioApp().querySelector("#" + item.id)
-                        console.log($prompt);
+                        // console.log($prompt);
                         item.$prompt.parentElement.parentElement.after($prompt)
                         item.$prompt.parentElement.parentElement.style.display = item.hideDefaultInput ? 'none' : 'flex'
                         // item.$textarea.parentNode.appendChild($prompt)
@@ -1055,7 +1055,7 @@ export default {
             let ids = []
             for (const item of this.prompts) {
                 if (item.tab == ele.id) {
-                    console.log(item)
+                    // console.log(item)
                     ids.push(item.id)
                     if (item.neg) {
                         $textareaNeg = item.$textarea
